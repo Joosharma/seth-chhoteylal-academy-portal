@@ -46,12 +46,15 @@ const stats = [
 ];
 
 const facilities = [
-  { icon: Monitor, title: "Smart Classes", desc: "Interactive digital classrooms for every grade." },
-  { icon: Library, title: "Library", desc: "Thousands of books, periodicals and reference material." },
-  { icon: Beaker, title: "Science Labs", desc: "Fully-equipped Physics, Chemistry and Biology labs." },
-  { icon: Trophy, title: "Sports Ground", desc: "Spacious playground for cricket, football & athletics." },
-  { icon: Monitor, title: "Computer Lab", desc: "Modern computer lab with high-speed internet." },
-  { icon: Bus, title: "Transportation", desc: "Safe school bus service covering nearby routes." },
+  { icon: Trophy, title: "Sports Facilities", desc: "Cricket, football, athletics and indoor games on a spacious campus." },
+  { icon: Library, title: "Library", desc: "Thousands of books, periodicals and quiet reading zones." },
+  { icon: Sparkles, title: "Robotics Lab", desc: "Hands-on STEM kits, robotics and coding for young innovators." },
+  { icon: Beaker, title: "Science Lab", desc: "Modern Physics, Chemistry & Biology labs for experiment-led learning." },
+  { icon: Monitor, title: "Computer Lab", desc: "High-speed internet, modern PCs and ICT curriculum across grades." },
+  { icon: Bus, title: "Transport", desc: "Safe, GPS-tracked school buses covering nearby villages and towns." },
+  { icon: ShieldCheck, title: "Safety & Surveillance", desc: "CCTV-monitored campus, trained staff and secure entry points." },
+  { icon: Monitor, title: "Smart Classes", desc: "Interactive digital classrooms with audio-visual learning aids." },
+  { icon: Building2, title: "Modern Infrastructure", desc: "Airy classrooms, clean washrooms and a green, child-friendly campus." },
 ];
 
 const gallery = [
