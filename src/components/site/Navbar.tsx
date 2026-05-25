@@ -10,6 +10,9 @@ const links = [
   { to: "/mpd", label: "MPD" },
   { to: "/enquiry", label: "Enquiry" },
   { to: "/marksheet", label: "Marksheet" },
+  { to: "/tc-download", label: "TC Download" },
+  { to: "/teacher-login", label: "Teacher Login" },
+  { to: "/student-login", label: "Student Login" },
   { to: "/contact", label: "Contact" },
 ];
 

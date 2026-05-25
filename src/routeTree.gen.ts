@@ -9,6 +9,9 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeacherLoginRouteImport } from './routes/teacher-login'
+import { Route as TcDownloadRouteImport } from './routes/tc-download'
+import { Route as StudentLoginRouteImport } from './routes/student-login'
 import { Route as MpdRouteImport } from './routes/mpd'
 import { Route as MarksheetRouteImport } from './routes/marksheet'
 import { Route as EnquiryRouteImport } from './routes/enquiry'
@@ -16,6 +19,21 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TeacherLoginRoute = TeacherLoginRouteImport.update({
+  id: '/teacher-login',
+  path: '/teacher-login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TcDownloadRoute = TcDownloadRouteImport.update({
+  id: '/tc-download',
+  path: '/tc-download',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentLoginRoute = StudentLoginRouteImport.update({
+  id: '/student-login',
+  path: '/student-login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MpdRoute = MpdRouteImport.update({
   id: '/mpd',
   path: '/mpd',
@@ -54,6 +72,9 @@ export interface FileRoutesByFullPath {
   '/enquiry': typeof EnquiryRoute
   '/marksheet': typeof MarksheetRoute
   '/mpd': typeof MpdRoute
+  '/student-login': typeof StudentLoginRoute
+  '/tc-download': typeof TcDownloadRoute
+  '/teacher-login': typeof TeacherLoginRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -62,6 +83,9 @@ export interface FileRoutesByTo {
   '/enquiry': typeof EnquiryRoute
   '/marksheet': typeof MarksheetRoute
   '/mpd': typeof MpdRoute
+  '/student-login': typeof StudentLoginRoute
+  '/tc-download': typeof TcDownloadRoute
+  '/teacher-login': typeof TeacherLoginRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,12 +95,33 @@ export interface FileRoutesById {
   '/enquiry': typeof EnquiryRoute
   '/marksheet': typeof MarksheetRoute
   '/mpd': typeof MpdRoute
+  '/student-login': typeof StudentLoginRoute
+  '/tc-download': typeof TcDownloadRoute
+  '/teacher-login': typeof TeacherLoginRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/contact' | '/enquiry' | '/marksheet' | '/mpd'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/enquiry'
+    | '/marksheet'
+    | '/mpd'
+    | '/student-login'
+    | '/tc-download'
+    | '/teacher-login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/contact' | '/enquiry' | '/marksheet' | '/mpd'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/enquiry'
+    | '/marksheet'
+    | '/mpd'
+    | '/student-login'
+    | '/tc-download'
+    | '/teacher-login'
   id:
     | '__root__'
     | '/'
@@ -85,6 +130,9 @@ export interface FileRouteTypes {
     | '/enquiry'
     | '/marksheet'
     | '/mpd'
+    | '/student-login'
+    | '/tc-download'
+    | '/teacher-login'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -94,10 +142,34 @@ export interface RootRouteChildren {
   EnquiryRoute: typeof EnquiryRoute
   MarksheetRoute: typeof MarksheetRoute
   MpdRoute: typeof MpdRoute
+  StudentLoginRoute: typeof StudentLoginRoute
+  TcDownloadRoute: typeof TcDownloadRoute
+  TeacherLoginRoute: typeof TeacherLoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/teacher-login': {
+      id: '/teacher-login'
+      path: '/teacher-login'
+      fullPath: '/teacher-login'
+      preLoaderRoute: typeof TeacherLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tc-download': {
+      id: '/tc-download'
+      path: '/tc-download'
+      fullPath: '/tc-download'
+      preLoaderRoute: typeof TcDownloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student-login': {
+      id: '/student-login'
+      path: '/student-login'
+      fullPath: '/student-login'
+      preLoaderRoute: typeof StudentLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/mpd': {
       id: '/mpd'
       path: '/mpd'
@@ -150,7 +222,20 @@ const rootRouteChildren: RootRouteChildren = {
   EnquiryRoute: EnquiryRoute,
   MarksheetRoute: MarksheetRoute,
   MpdRoute: MpdRoute,
+  StudentLoginRoute: StudentLoginRoute,
+  TcDownloadRoute: TcDownloadRoute,
+  TeacherLoginRoute: TeacherLoginRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
