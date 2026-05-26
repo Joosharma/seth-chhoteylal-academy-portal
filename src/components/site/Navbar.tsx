@@ -4,14 +4,15 @@ import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { SCHOOL } from "@/lib/school";
 
-const links = [
+type NavLink = { to: string; label: string; hasDropdown?: boolean };
+const links: NavLink[] = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
   { to: "/#campus", label: "Campus" },
   { to: "/mpd", label: "MPD", hasDropdown: true },
   { to: "/enquiry", label: "Enquiry" },
   { to: "/contact", label: "Contact" },
-] as const;
+];
 
 const mpdItems = [
   { to: "/mpd", label: "Fee Structure" },
