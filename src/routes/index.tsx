@@ -302,8 +302,9 @@ function Home() {
               </Link>
             </div>
           </div>
-          <div className="justify-self-center lg:justify-self-end w-full max-w-sm">
+          <div className="justify-self-center lg:justify-self-end w-full max-w-sm space-y-5">
             <HeroEnquiryCard />
+            <HeroNewsWidget />
           </div>
         </div>
       </section>
