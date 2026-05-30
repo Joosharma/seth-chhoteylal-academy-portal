@@ -226,7 +226,7 @@ function Stat({ value, suffix, label }: { value: number; suffix: string; label: 
 
 function HeroEnquiryCard() {
   return (
-    <div className="glass rounded-2xl p-6 shadow-2xl w-full max-w-sm animate-fade-up-delay-2">
+    <div className="glass rounded-2xl p-6 shadow-2xl w-full animate-fade-up-delay-2">
       <p className="text-xs uppercase tracking-wider text-teal font-semibold">Quick Enquiry</p>
       <h3 className="mt-1 font-display text-xl font-bold text-navy">Admission 2026–27</h3>
       <form
