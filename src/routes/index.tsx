@@ -9,7 +9,103 @@ import {
   GraduationCap, BookOpen, Trophy, Users, Beaker, Monitor, Library, Bus,
   Calendar, ArrowRight, Bell, Award, ShieldCheck, Sparkles, MessageSquare,
   ChevronDown, Quote, FileCheck2, ClipboardList, UserCheck, BadgeCheck, Building2,
+  ChevronUp, Megaphone,
 } from "lucide-react";
+
+type NewsItem = { id: number; title: string; date: string; category: string };
+
+const newsItems: NewsItem[] = [
+  { id: 1, title: "Admissions Open for Session 2026–27", date: "May 20", category: "Admission" },
+  { id: 2, title: "Khelo MP Youth Games 2026 — Registrations", date: "Feb 06", category: "Sports" },
+  { id: 3, title: "Annual Result Declaration for Classes I–VIII", date: "May 10", category: "Result" },
+  { id: 4, title: "Summer Vacation: May 25 – June 25", date: "Apr 28", category: "Notice" },
+  { id: 5, title: "Science Fair & Robotics Expo 2026", date: "Mar 18", category: "Event" },
+  { id: 6, title: "Parent–Teacher Meet Scheduled", date: "Mar 02", category: "Meeting" },
+  { id: 7, title: "CBSE Board Toppers Felicitated", date: "Feb 22", category: "Achievement" },
+];
+
+function HeroNewsWidget() {
+  const [index, setIndex] = useState(0);
+  const [paused, setPaused] = useState(false);
+  const visible = 4;
+  const total = newsItems.length;
+
+  useEffect(() => {
+    if (paused) return;
+    const id = setInterval(() => setIndex((i) => (i + 1) % total), 3500);
+    return () => clearInterval(id);
+  }, [paused, total]);
+
+  const items = Array.from({ length: visible }, (_, k) => newsItems[(index + k) % total]);
+
+  return (
+    <div
+      className="glass rounded-3xl p-5 shadow-2xl w-full max-w-sm animate-fade-up-delay-3"
+      onMouseEnter={() => setPaused(true)}
+      onMouseLeave={() => setPaused(false)}
+      role="region"
+      aria-label="Latest news and notifications"
+    >
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-2">
+          <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-full bg-teal text-white">
+            <Megaphone className="h-4 w-4" />
+            <span className="absolute -top-0.5 -right-0.5 h-2.5 w-2.5 rounded-full bg-aqua animate-pulse" />
+          </span>
+          <h3 className="font-display font-bold text-navy text-sm">Latest News</h3>
+        </div>
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => setIndex((i) => (i - 1 + total) % total)}
+            aria-label="Previous news"
+            className="h-7 w-7 inline-flex items-center justify-center rounded-full bg-white/70 hover:bg-white text-navy transition"
+          >
+            <ChevronUp className="h-4 w-4" />
+          </button>
+          <button
+            onClick={() => setIndex((i) => (i + 1) % total)}
+            aria-label="Next news"
+            className="h-7 w-7 inline-flex items-center justify-center rounded-full bg-white/70 hover:bg-white text-navy transition"
+          >
+            <ChevronDown className="h-4 w-4" />
+          </button>
+        </div>
+      </div>
+
+      <ul
+        aria-live="polite"
+        className="mt-4 space-y-2.5 overflow-hidden"
+      >
+        {items.map((n, i) => (
+          <li
+            key={`${n.id}-${index}-${i}`}
+            className="flex items-start gap-3 rounded-xl bg-white/70 hover:bg-white p-2.5 transition animate-fade-up"
+            style={{ animationDelay: `${i * 60}ms` }}
+          >
+            <div className="shrink-0 rounded-lg bg-teal text-white text-[10px] font-semibold leading-tight px-2 py-1.5 text-center min-w-[44px]">
+              {n.date}
+            </div>
+            <div className="min-w-0">
+              <span className="inline-block text-[10px] uppercase tracking-wider font-semibold text-teal mb-0.5">
+                {n.category}
+              </span>
+              <p className="text-[13px] text-navy font-medium leading-snug line-clamp-2">
+                {n.title}
+              </p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <Link
+        to="/mpd"
+        className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-xl bg-navy text-white text-xs font-semibold px-4 py-2.5 hover:bg-navy-dark transition"
+      >
+        View All News <ArrowRight className="h-3.5 w-3.5" />
+      </Link>
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/")({
   component: Home,
@@ -206,8 +302,9 @@ function Home() {
               </Link>
             </div>
           </div>
-          <div className="justify-self-center lg:justify-self-end w-full max-w-sm">
+          <div className="justify-self-center lg:justify-self-end w-full max-w-sm space-y-5">
             <HeroEnquiryCard />
+            <HeroNewsWidget />
           </div>
         </div>
       </section>
