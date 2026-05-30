@@ -40,7 +40,7 @@ function HeroNewsWidget() {
 
   return (
     <div
-      className="glass rounded-3xl p-5 shadow-2xl w-full max-w-sm animate-fade-up-delay-3"
+      className="glass rounded-3xl p-5 shadow-2xl w-full animate-fade-up-delay-3"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       role="region"
