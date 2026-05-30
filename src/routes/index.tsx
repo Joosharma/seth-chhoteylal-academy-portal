@@ -40,7 +40,7 @@ function HeroNewsWidget() {
 
   return (
     <div
-      className="glass rounded-3xl p-5 shadow-2xl w-full max-w-sm animate-fade-up-delay-3"
+      className="glass rounded-3xl p-5 shadow-2xl w-full animate-fade-up-delay-3"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       role="region"
@@ -226,7 +226,7 @@ function Stat({ value, suffix, label }: { value: number; suffix: string; label: 
 
 function HeroEnquiryCard() {
   return (
-    <div className="glass rounded-2xl p-6 shadow-2xl w-full max-w-sm animate-fade-up-delay-2">
+    <div className="glass rounded-2xl p-6 shadow-2xl w-full animate-fade-up-delay-2">
       <p className="text-xs uppercase tracking-wider text-teal font-semibold">Quick Enquiry</p>
       <h3 className="mt-1 font-display text-xl font-bold text-navy">Admission 2026–27</h3>
       <form
@@ -282,7 +282,7 @@ function Home() {
         <div className="absolute top-20 right-10 h-32 w-32 rounded-full bg-aqua/20 blur-2xl animate-float" />
         <div className="absolute bottom-16 left-10 h-44 w-44 rounded-full bg-teal/30 blur-3xl animate-float" style={{ animationDelay: "1.5s" }} />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-20 md:py-28 lg:py-32 grid gap-10 lg:grid-cols-[1.4fr_1fr] items-center">
+        <div className="relative mx-auto max-w-7xl px-4 py-20 md:py-28 lg:py-32 grid gap-10 lg:grid-cols-[1.1fr_1fr] items-center">
           <div className="text-white">
             <p className="inline-flex items-center gap-2 glass-dark text-white font-semibold text-xs uppercase tracking-wider px-3 py-1.5 rounded-full animate-fade-up">
               <Sparkles className="h-3.5 w-3.5 text-aqua" /> CBSE • Senior Secondary
@@ -302,7 +302,7 @@ function Home() {
               </Link>
             </div>
           </div>
-          <div className="justify-self-center lg:justify-self-end w-full max-w-sm space-y-5">
+          <div className="justify-self-center lg:justify-self-end w-full flex flex-col lg:flex-row gap-5 items-start">
             <HeroEnquiryCard />
             <HeroNewsWidget />
           </div>
