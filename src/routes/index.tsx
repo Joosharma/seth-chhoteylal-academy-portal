@@ -9,7 +9,8 @@ import {
   GraduationCap, BookOpen, Trophy, Users, Beaker, Monitor, Library, Bus,
   Calendar, ArrowRight, Bell, Award, ShieldCheck, Sparkles, MessageSquare,
   ChevronDown, Quote, FileCheck2, ClipboardList, UserCheck, BadgeCheck, Building2,
-  ChevronUp, Megaphone,
+  ChevronUp, Megaphone, Smartphone, Star, Download, QrCode, CreditCard, CalendarDays,
+  CheckCircle2, Wallet,
 } from "lucide-react";
 
 type NewsItem = { id: number; title: string; date: string; category: string };
