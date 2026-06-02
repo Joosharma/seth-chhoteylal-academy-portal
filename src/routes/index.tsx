@@ -9,7 +9,8 @@ import {
   GraduationCap, BookOpen, Trophy, Users, Beaker, Monitor, Library, Bus,
   Calendar, ArrowRight, Bell, Award, ShieldCheck, Sparkles, MessageSquare,
   ChevronDown, Quote, FileCheck2, ClipboardList, UserCheck, BadgeCheck, Building2,
-  ChevronUp, Megaphone,
+  ChevronUp, Megaphone, Smartphone, Star, Download, QrCode, CreditCard, CalendarDays,
+  CheckCircle2, Wallet,
 } from "lucide-react";
 
 type NewsItem = { id: number; title: string; date: string; category: string };
@@ -502,6 +503,9 @@ function Home() {
         </div>
       </section>
 
+      {/* SCHOOL MOBILE APP */}
+      <MobileAppSection />
+
       {/* TESTIMONIALS */}
       <section className="relative bg-gradient-teal-slate py-16 md:py-24 overflow-hidden">
         <Building2 className="absolute top-10 right-10 h-40 w-40 text-white/5" />
@@ -564,5 +568,181 @@ function Home() {
         </div>
       </section>
     </Layout>
+  );
+}
+
+const appFeatures = [
+  { icon: UserCheck, label: "Daily Attendance Tracking" },
+  { icon: BookOpen, label: "Homework & Assignments" },
+  { icon: Award, label: "Exam Results & Report Cards" },
+  { icon: Megaphone, label: "School Notices & Announcements" },
+  { icon: Wallet, label: "Fee Information & Updates" },
+  { icon: CalendarDays, label: "Event Calendar" },
+  { icon: MessageSquare, label: "Parent Communication" },
+  { icon: Bell, label: "Instant Notifications" },
+];
+
+const floatingChips = [
+  { icon: UserCheck, label: "Attendance", pos: "top-6 -left-4 md:-left-10" },
+  { icon: BookOpen, label: "Homework", pos: "top-32 -right-4 md:-right-12" },
+  { icon: Award, label: "Results", pos: "top-1/2 -left-6 md:-left-14" },
+  { icon: Bell, label: "Notices", pos: "bottom-32 -right-4 md:-right-10" },
+  { icon: CreditCard, label: "Fees", pos: "bottom-10 -left-4 md:-left-12" },
+];
+
+function MobileAppSection() {
+  return (
+    <section className="relative bg-soft py-20 md:py-28 overflow-hidden">
+      {/* decorative blobs */}
+      <div className="absolute top-20 left-10 h-72 w-72 rounded-full bg-aqua/30 blur-3xl" />
+      <div className="absolute bottom-10 right-10 h-80 w-80 rounded-full bg-teal/10 blur-3xl" />
+
+      <div className="relative mx-auto max-w-7xl px-4 grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        {/* LEFT — Phone mockup */}
+        <div className="relative flex justify-center order-2 lg:order-1">
+          <div className="relative animate-float">
+            {/* Phone frame */}
+            <div className="relative w-[260px] md:w-[300px] h-[540px] md:h-[620px] bg-navy rounded-[2.8rem] p-3 shadow-2xl shadow-teal/30 ring-1 ring-white/20">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-navy rounded-b-2xl z-20" />
+              <div className="relative w-full h-full rounded-[2.2rem] overflow-hidden bg-gradient-to-br from-teal to-[#0B5C56]">
+                {/* App screen content */}
+                <div className="absolute inset-0 flex flex-col">
+                  <div className="px-5 pt-10 pb-4 text-white">
+                    <p className="text-[10px] uppercase tracking-widest text-aqua/90">EduTinker</p>
+                    <h4 className="font-display text-lg font-bold leading-tight mt-1">Hello, Parent 👋</h4>
+                    <p className="text-[11px] text-white/70 mt-0.5">Seth Chhoteylal Academy</p>
+                  </div>
+                  <div className="mx-4 rounded-2xl bg-white/15 backdrop-blur p-3 text-white">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase tracking-wider text-aqua">Today</span>
+                      <CheckCircle2 className="h-3.5 w-3.5 text-aqua" />
+                    </div>
+                    <p className="text-sm font-semibold mt-1">Attendance: Present</p>
+                    <p className="text-[10px] text-white/70">Marked at 8:02 AM</p>
+                  </div>
+                  <div className="flex-1 bg-white rounded-t-3xl mt-4 p-4 grid grid-cols-3 gap-3 content-start">
+                    {[
+                      { icon: BookOpen, label: "Homework", c: "bg-teal/10 text-teal" },
+                      { icon: Award, label: "Results", c: "bg-aqua-soft text-teal" },
+                      { icon: Bell, label: "Notices", c: "bg-teal/10 text-teal" },
+                      { icon: Wallet, label: "Fees", c: "bg-aqua-soft text-teal" },
+                      { icon: CalendarDays, label: "Calendar", c: "bg-teal/10 text-teal" },
+                      { icon: MessageSquare, label: "Chat", c: "bg-aqua-soft text-teal" },
+                    ].map(({ icon: I, label, c }) => (
+                      <div key={label} className="flex flex-col items-center gap-1.5">
+                        <div className={`h-11 w-11 rounded-2xl flex items-center justify-center ${c}`}>
+                          <I className="h-5 w-5" />
+                        </div>
+                        <span className="text-[9px] font-medium text-navy text-center leading-tight">{label}</span>
+                      </div>
+                    ))}
+                    <div className="col-span-3 mt-2 rounded-xl bg-soft p-2.5 flex items-center gap-2">
+                      <div className="h-7 w-7 rounded-lg bg-teal text-white flex items-center justify-center">
+                        <Megaphone className="h-3.5 w-3.5" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-[10px] font-semibold text-navy truncate">PTM Scheduled Sat</p>
+                        <p className="text-[9px] text-slate-500 truncate">Tap to view full notice</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Floating chips */}
+            {floatingChips.map(({ icon: Icon, label, pos }, i) => (
+              <div
+                key={label}
+                className={`hidden sm:flex absolute ${pos} items-center gap-2 bg-white rounded-full pl-2 pr-4 py-2 shadow-xl ring-1 ring-teal/10 animate-fade-up`}
+                style={{ animationDelay: `${i * 120}ms` }}
+              >
+                <span className="h-7 w-7 rounded-full bg-teal/10 text-teal flex items-center justify-center">
+                  <Icon className="h-3.5 w-3.5" />
+                </span>
+                <span className="text-xs font-semibold text-navy">{label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT — Content */}
+        <div className="order-1 lg:order-2">
+          <p className="text-teal font-semibold uppercase text-xs tracking-[0.2em] flex items-center gap-2">
+            <Smartphone className="h-4 w-4" /> Digital Learning Platform
+          </p>
+          <h2 className="mt-3 font-display text-3xl md:text-4xl lg:text-5xl font-bold text-navy leading-tight">
+            School Mobile App
+          </h2>
+          <p className="mt-2 text-lg md:text-xl font-semibold text-teal">
+            Stay Connected Anytime, Anywhere
+          </p>
+          <p className="mt-4 text-slate-600 leading-relaxed max-w-xl">
+            The Seth Chhoteylal Academy Mobile App, powered by <span className="font-semibold text-navy">EduTinker</span>, helps parents, students, and teachers stay connected. Access attendance, homework, results, notices, fees and important announcements right from your smartphone.
+          </p>
+
+          {/* Features grid */}
+          <div className="mt-6 grid sm:grid-cols-2 gap-2.5">
+            {appFeatures.map(({ icon: Icon, label }) => (
+              <div key={label} className="flex items-center gap-3 bg-white rounded-xl px-3.5 py-2.5 ring-1 ring-slate-200/70 hover-lift">
+                <span className="h-8 w-8 rounded-lg bg-teal/10 text-teal flex items-center justify-center shrink-0">
+                  <Icon className="h-4 w-4" />
+                </span>
+                <span className="text-sm font-medium text-navy">{label}</span>
+              </div>
+            ))}
+          </div>
+
+          {/* Trust stats */}
+          <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-3">
+            {[
+              { icon: Star, value: "4.1", label: "App Rating", color: "text-yellow-500" },
+              { icon: Download, value: "2K+", label: "Reviews", color: "text-teal" },
+              { icon: Smartphone, value: "Android", label: "Available on", color: "text-teal" },
+              { icon: Bell, value: "Real-Time", label: "Notifications", color: "text-teal" },
+            ].map(({ icon: Icon, value, label, color }) => (
+              <div key={label} className="bg-white rounded-2xl p-3 text-center ring-1 ring-slate-200/70 shadow-sm">
+                <Icon className={`h-5 w-5 mx-auto ${color}`} />
+                <p className="mt-1.5 text-base font-bold text-navy leading-none">{value}</p>
+                <p className="text-[11px] text-slate-500 mt-1">{label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTAs */}
+          <div className="mt-7 flex flex-wrap items-center gap-3">
+            <a
+              href="https://play.google.com/store"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-navy hover:bg-navy-dark text-white rounded-2xl pl-4 pr-5 py-3 shadow-lg shadow-navy/20 transition"
+            >
+              <svg viewBox="0 0 24 24" className="h-7 w-7" fill="currentColor" aria-hidden="true">
+                <path d="M3.6 2.3c-.4.3-.6.8-.6 1.5v16.4c0 .7.2 1.2.6 1.5l9.2-9.6L3.6 2.3zm10.5 10.9 2.6 2.7-11.2 6.4c-.4.2-.8.2-1.1 0l9.7-9.1zm0-2.4L4.4 1.7c.3-.2.7-.2 1.1 0l11.2 6.4-2.6 2.7zm6 .8c.6.4 1 1 1 1.7s-.4 1.3-1 1.7l-2.7 1.5-3.1-3.2 3.1-3.2 2.7 1.5z"/>
+              </svg>
+              <div className="text-left leading-tight">
+                <p className="text-[10px] text-white/70">GET IT ON</p>
+                <p className="font-semibold text-sm">Google Play</p>
+              </div>
+            </a>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 bg-white text-teal font-semibold rounded-2xl px-5 py-3 ring-1 ring-teal/30 hover:bg-aqua-soft transition"
+            >
+              Learn More <ArrowRight className="h-4 w-4" />
+            </Link>
+            <div className="flex items-center gap-3 bg-white rounded-2xl p-2.5 pr-4 ring-1 ring-slate-200/70 shadow-sm">
+              <div className="h-12 w-12 rounded-lg bg-soft flex items-center justify-center text-navy">
+                <QrCode className="h-7 w-7" />
+              </div>
+              <div className="leading-tight">
+                <p className="text-[10px] uppercase tracking-wider text-slate-500">Scan to Install</p>
+                <p className="text-xs font-semibold text-navy">EduTinker App</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }
