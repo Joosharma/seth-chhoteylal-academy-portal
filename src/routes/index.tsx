@@ -503,6 +503,9 @@ function Home() {
         </div>
       </section>
 
+      {/* SCHOOL MOBILE APP */}
+      <MobileAppSection />
+
       {/* TESTIMONIALS */}
       <section className="relative bg-gradient-teal-slate py-16 md:py-24 overflow-hidden">
         <Building2 className="absolute top-10 right-10 h-40 w-40 text-white/5" />
