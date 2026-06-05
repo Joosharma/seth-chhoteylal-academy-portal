@@ -43,7 +43,7 @@ const mpdItems: DropdownItem[] = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<"about" | "mpd" | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
