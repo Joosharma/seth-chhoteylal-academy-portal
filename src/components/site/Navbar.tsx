@@ -145,9 +145,10 @@ export function Navbar() {
                   >
                     {l.label}
                   </Link>
-                )}
-              </li>
-            ))}
+                  )}
+                </li>
+              );
+            })}
             <li className="grid grid-cols-2 gap-2 pt-2">
               <Link to="/teacher-login" onClick={() => setOpen(false)} className="text-center border border-slate-200 rounded-full px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-teal">Teacher Login</Link>
               <Link to="/student-login" onClick={() => setOpen(false)} className="text-center border border-slate-200 rounded-full px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-teal">Student Login</Link>
