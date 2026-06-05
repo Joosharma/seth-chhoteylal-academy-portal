@@ -4,17 +4,25 @@ import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { SCHOOL } from "@/lib/school";
 
-type NavLink = { to: string; label: string; hasDropdown?: boolean };
+type DropdownItem = { to: string; label: string };
+type NavLink = { to: string; label: string; dropdown?: "about" | "mpd" };
 const links: NavLink[] = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
+  { to: "/about", label: "About", dropdown: "about" },
   { to: "/#campus", label: "Campus" },
-  { to: "/mpd", label: "MPD", hasDropdown: true },
+  { to: "/mpd", label: "MPD", dropdown: "mpd" },
   { to: "/enquiry", label: "Enquiry" },
   { to: "/contact", label: "Contact" },
 ];
 
-const mpdItems = [
+const aboutItems: DropdownItem[] = [
+  { to: "/about#principal-message", label: "Principal Message" },
+  { to: "/about#manager-message", label: "Manager Message" },
+  { to: "/about#our-picture", label: "Our Picture" },
+  { to: "/about#facilities-faculty", label: "Facilities & Faculty" },
+];
+
+const mpdItems: DropdownItem[] = [
   { to: "/mpd", label: "Fee Structure" },
   { to: "/mpd", label: "Academic Calendar" },
   { to: "/mpd", label: "Fire Safety" },
@@ -28,7 +36,7 @@ const mpdItems = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [mpdOpen, setMpdOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<"about" | "mpd" | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -49,47 +57,52 @@ export function Navbar() {
         </Link>
 
         <ul className="hidden lg:flex items-center gap-1 flex-1 justify-center whitespace-nowrap">
-          {links.map((l) => (
-            <li
-              key={l.label}
-              className="relative"
-              onMouseEnter={() => l.hasDropdown && setMpdOpen(true)}
-              onMouseLeave={() => l.hasDropdown && setMpdOpen(false)}
-            >
-              {l.hasDropdown ? (
-                <button
-                  className="inline-flex items-center gap-1 px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-teal rounded-md transition"
-                >
-                  {l.label}
-                  <ChevronDown className={`h-3.5 w-3.5 transition-transform ${mpdOpen ? "rotate-180" : ""}`} />
-                </button>
-              ) : (
-                <Link
-                  to={l.to}
-                  className="px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-teal rounded-md transition"
-                  activeProps={{ className: "px-3 py-2 text-[13px] font-semibold text-teal rounded-md" }}
-                >
-                  {l.label}
-                </Link>
-              )}
+          {links.map((l) => {
+            const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : null;
+            const isOpen = openDropdown === l.dropdown;
+            return (
+              <li
+                key={l.label}
+                className="relative"
+                onMouseEnter={() => l.dropdown && setOpenDropdown(l.dropdown)}
+                onMouseLeave={() => l.dropdown && setOpenDropdown(null)}
+              >
+                {l.dropdown ? (
+                  <Link
+                    to={l.to}
+                    className="inline-flex items-center gap-1 px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-teal rounded-md transition"
+                  >
+                    {l.label}
+                    <ChevronDown className={`h-3.5 w-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`} />
+                  </Link>
+                ) : (
+                  <Link
+                    to={l.to}
+                    className="px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-teal rounded-md transition"
+                    activeProps={{ className: "px-3 py-2 text-[13px] font-semibold text-teal rounded-md" }}
+                  >
+                    {l.label}
+                  </Link>
+                )}
 
-              {l.hasDropdown && mpdOpen && (
-                <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64 z-50">
-                  <div className="bg-white/90 backdrop-blur-xl border border-slate-200/70 rounded-xl shadow-xl shadow-slate-900/10 p-2">
-                    {mpdItems.map((m) => (
-                      <Link
-                        key={m.label}
-                        to={m.to}
-                        className="block px-3 py-2 text-[13px] text-slate-700 rounded-lg hover:bg-aqua-soft hover:text-teal transition"
-                      >
-                        {m.label}
-                      </Link>
-                    ))}
+                {items && isOpen && (
+                  <div className="absolute left-1/2 -translate-x-1/2 top-full pt-3 w-64 z-50">
+                    <div className="bg-white/95 backdrop-blur-xl border border-slate-200/70 rounded-xl shadow-xl shadow-slate-900/10 p-2">
+                      {items.map((m) => (
+                        <Link
+                          key={m.label}
+                          to={m.to}
+                          className="block px-3 py-2 text-[13px] text-slate-700 rounded-lg hover:bg-aqua-soft hover:text-teal transition"
+                        >
+                          {m.label}
+                        </Link>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              )}
-            </li>
-          ))}
+                )}
+              </li>
+            );
+          })}
         </ul>
 
         <div className="hidden lg:flex items-center shrink-0">
@@ -106,23 +119,25 @@ export function Navbar() {
       {open && (
         <div className="lg:hidden border-t bg-white">
           <ul className="px-4 py-2 space-y-1">
-            {links.map((l) => (
-              <li key={l.label}>
-                {l.hasDropdown ? (
-                  <details className="group">
-                    <summary className="flex items-center justify-between cursor-pointer px-3 py-2.5 rounded-md text-sm font-medium text-slate-800 hover:bg-aqua-soft hover:text-teal">
-                      {l.label}
-                      <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-                    </summary>
-                    <div className="pl-3 mt-1 space-y-0.5">
-                      {mpdItems.map((m) => (
-                        <Link key={m.label} to={m.to} onClick={() => setOpen(false)} className="block px-3 py-2 rounded-md text-[13px] text-slate-700 hover:bg-aqua-soft hover:text-teal">
-                          {m.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </details>
-                ) : (
+            {links.map((l) => {
+              const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : null;
+              return (
+                <li key={l.label}>
+                  {items ? (
+                    <details className="group">
+                      <summary className="flex items-center justify-between cursor-pointer px-3 py-2.5 rounded-md text-sm font-medium text-slate-800 hover:bg-aqua-soft hover:text-teal">
+                        {l.label}
+                        <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="pl-3 mt-1 space-y-0.5">
+                        {items.map((m) => (
+                          <Link key={m.label} to={m.to} onClick={() => setOpen(false)} className="block px-3 py-2 rounded-md text-[13px] text-slate-700 hover:bg-aqua-soft hover:text-teal">
+                            {m.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </details>
+                  ) : (
                   <Link
                     to={l.to}
                     onClick={() => setOpen(false)}
@@ -130,9 +145,10 @@ export function Navbar() {
                   >
                     {l.label}
                   </Link>
-                )}
-              </li>
-            ))}
+                  )}
+                </li>
+              );
+            })}
             <li className="grid grid-cols-2 gap-2 pt-2">
               <Link to="/teacher-login" onClick={() => setOpen(false)} className="text-center border border-slate-200 rounded-full px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-teal">Teacher Login</Link>
               <Link to="/student-login" onClick={() => setOpen(false)} className="text-center border border-slate-200 rounded-full px-3 py-2 text-[13px] font-medium text-slate-700 hover:text-teal">Student Login</Link>
