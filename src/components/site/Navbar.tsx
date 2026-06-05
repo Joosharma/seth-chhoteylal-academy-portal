@@ -127,7 +127,7 @@ export function Navbar() {
         <div className="lg:hidden border-t bg-white">
           <ul className="px-4 py-2 space-y-1">
             {links.map((l) => {
-              const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : null;
+              const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : l.dropdown === "gallery" ? galleryItems : null;
               return (
                 <li key={l.label}>
                   {items ? (
