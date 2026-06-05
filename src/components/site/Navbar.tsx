@@ -5,11 +5,12 @@ import logo from "@/assets/logo.png";
 import { SCHOOL } from "@/lib/school";
 
 type DropdownItem = { to: string; label: string };
-type NavLink = { to: string; label: string; dropdown?: "about" | "mpd" };
+type DropdownKey = "about" | "mpd" | "gallery";
+type NavLink = { to: string; label: string; dropdown?: DropdownKey };
 const links: NavLink[] = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About", dropdown: "about" },
-  { to: "/#campus", label: "Campus" },
+  { to: "/gallery", label: "Gallery", dropdown: "gallery" },
   { to: "/mpd", label: "MPD", dropdown: "mpd" },
   { to: "/enquiry", label: "Enquiry" },
   { to: "/contact", label: "Contact" },
@@ -20,6 +21,12 @@ const aboutItems: DropdownItem[] = [
   { to: "/about#manager-message", label: "Manager Message" },
   { to: "/about#our-picture", label: "Our Picture" },
   { to: "/about#facilities-faculty", label: "Facilities & Faculty" },
+];
+
+const galleryItems: DropdownItem[] = [
+  { to: "/gallery#pictures", label: "Pictures" },
+  { to: "/gallery#videos", label: "Videos" },
+  { to: "/gallery#campus", label: "Campus" },
 ];
 
 const mpdItems: DropdownItem[] = [
