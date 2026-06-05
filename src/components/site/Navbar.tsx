@@ -65,7 +65,7 @@ export function Navbar() {
 
         <ul className="hidden lg:flex items-center gap-1 flex-1 justify-center whitespace-nowrap">
           {links.map((l) => {
-            const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : null;
+            const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : l.dropdown === "gallery" ? galleryItems : null;
             const isOpen = openDropdown === l.dropdown;
             return (
               <li
