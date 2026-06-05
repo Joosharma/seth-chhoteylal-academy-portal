@@ -4,17 +4,25 @@ import { Menu, X, ArrowRight, ChevronDown } from "lucide-react";
 import logo from "@/assets/logo.png";
 import { SCHOOL } from "@/lib/school";
 
-type NavLink = { to: string; label: string; hasDropdown?: boolean };
+type DropdownItem = { to: string; label: string };
+type NavLink = { to: string; label: string; dropdown?: "about" | "mpd" };
 const links: NavLink[] = [
   { to: "/", label: "Home" },
-  { to: "/about", label: "About" },
+  { to: "/about", label: "About", dropdown: "about" },
   { to: "/#campus", label: "Campus" },
-  { to: "/mpd", label: "MPD", hasDropdown: true },
+  { to: "/mpd", label: "MPD", dropdown: "mpd" },
   { to: "/enquiry", label: "Enquiry" },
   { to: "/contact", label: "Contact" },
 ];
 
-const mpdItems = [
+const aboutItems: DropdownItem[] = [
+  { to: "/about#principal-message", label: "Principal Message" },
+  { to: "/about#manager-message", label: "Manager Message" },
+  { to: "/about#our-picture", label: "Our Picture" },
+  { to: "/about#facilities-faculty", label: "Facilities & Faculty" },
+];
+
+const mpdItems: DropdownItem[] = [
   { to: "/mpd", label: "Fee Structure" },
   { to: "/mpd", label: "Academic Calendar" },
   { to: "/mpd", label: "Fire Safety" },
