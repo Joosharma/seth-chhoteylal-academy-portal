@@ -119,23 +119,25 @@ export function Navbar() {
       {open && (
         <div className="lg:hidden border-t bg-white">
           <ul className="px-4 py-2 space-y-1">
-            {links.map((l) => (
-              <li key={l.label}>
-                {l.hasDropdown ? (
-                  <details className="group">
-                    <summary className="flex items-center justify-between cursor-pointer px-3 py-2.5 rounded-md text-sm font-medium text-slate-800 hover:bg-aqua-soft hover:text-teal">
-                      {l.label}
-                      <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
-                    </summary>
-                    <div className="pl-3 mt-1 space-y-0.5">
-                      {mpdItems.map((m) => (
-                        <Link key={m.label} to={m.to} onClick={() => setOpen(false)} className="block px-3 py-2 rounded-md text-[13px] text-slate-700 hover:bg-aqua-soft hover:text-teal">
-                          {m.label}
-                        </Link>
-                      ))}
-                    </div>
-                  </details>
-                ) : (
+            {links.map((l) => {
+              const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : null;
+              return (
+                <li key={l.label}>
+                  {items ? (
+                    <details className="group">
+                      <summary className="flex items-center justify-between cursor-pointer px-3 py-2.5 rounded-md text-sm font-medium text-slate-800 hover:bg-aqua-soft hover:text-teal">
+                        {l.label}
+                        <ChevronDown className="h-4 w-4 transition-transform group-open:rotate-180" />
+                      </summary>
+                      <div className="pl-3 mt-1 space-y-0.5">
+                        {items.map((m) => (
+                          <Link key={m.label} to={m.to} onClick={() => setOpen(false)} className="block px-3 py-2 rounded-md text-[13px] text-slate-700 hover:bg-aqua-soft hover:text-teal">
+                            {m.label}
+                          </Link>
+                        ))}
+                      </div>
+                    </details>
+                  ) : (
                   <Link
                     to={l.to}
                     onClick={() => setOpen(false)}
