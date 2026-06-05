@@ -14,6 +14,7 @@ import { Route as TcDownloadRouteImport } from './routes/tc-download'
 import { Route as StudentLoginRouteImport } from './routes/student-login'
 import { Route as MpdRouteImport } from './routes/mpd'
 import { Route as MarksheetRouteImport } from './routes/marksheet'
+import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as EnquiryRouteImport } from './routes/enquiry'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as AuthRouteImport } from './routes/auth'
@@ -50,6 +51,11 @@ const MpdRoute = MpdRouteImport.update({
 const MarksheetRoute = MarksheetRouteImport.update({
   id: '/marksheet',
   path: '/marksheet',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GalleryRoute = GalleryRouteImport.update({
+  id: '/gallery',
+  path: '/gallery',
   getParentRoute: () => rootRouteImport,
 } as any)
 const EnquiryRoute = EnquiryRouteImport.update({
@@ -121,6 +127,7 @@ export interface FileRoutesByFullPath {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/enquiry': typeof EnquiryRoute
+  '/gallery': typeof GalleryRoute
   '/marksheet': typeof MarksheetRoute
   '/mpd': typeof MpdRoute
   '/student-login': typeof StudentLoginRoute
@@ -139,6 +146,7 @@ export interface FileRoutesByTo {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/enquiry': typeof EnquiryRoute
+  '/gallery': typeof GalleryRoute
   '/marksheet': typeof MarksheetRoute
   '/mpd': typeof MpdRoute
   '/student-login': typeof StudentLoginRoute
@@ -158,6 +166,7 @@ export interface FileRoutesById {
   '/auth': typeof AuthRoute
   '/contact': typeof ContactRoute
   '/enquiry': typeof EnquiryRoute
+  '/gallery': typeof GalleryRoute
   '/marksheet': typeof MarksheetRoute
   '/mpd': typeof MpdRoute
   '/student-login': typeof StudentLoginRoute
@@ -178,6 +187,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/enquiry'
+    | '/gallery'
     | '/marksheet'
     | '/mpd'
     | '/student-login'
@@ -196,6 +206,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/enquiry'
+    | '/gallery'
     | '/marksheet'
     | '/mpd'
     | '/student-login'
@@ -214,6 +225,7 @@ export interface FileRouteTypes {
     | '/auth'
     | '/contact'
     | '/enquiry'
+    | '/gallery'
     | '/marksheet'
     | '/mpd'
     | '/student-login'
@@ -234,6 +246,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   ContactRoute: typeof ContactRoute
   EnquiryRoute: typeof EnquiryRoute
+  GalleryRoute: typeof GalleryRoute
   MarksheetRoute: typeof MarksheetRoute
   MpdRoute: typeof MpdRoute
   StudentLoginRoute: typeof StudentLoginRoute
@@ -276,6 +289,13 @@ declare module '@tanstack/react-router' {
       path: '/marksheet'
       fullPath: '/marksheet'
       preLoaderRoute: typeof MarksheetRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/gallery': {
+      id: '/gallery'
+      path: '/gallery'
+      fullPath: '/gallery'
+      preLoaderRoute: typeof GalleryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/enquiry': {
@@ -405,6 +425,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   ContactRoute: ContactRoute,
   EnquiryRoute: EnquiryRoute,
+  GalleryRoute: GalleryRoute,
   MarksheetRoute: MarksheetRoute,
   MpdRoute: MpdRoute,
   StudentLoginRoute: StudentLoginRoute,

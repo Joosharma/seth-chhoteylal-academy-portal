@@ -5,11 +5,12 @@ import logo from "@/assets/logo.png";
 import { SCHOOL } from "@/lib/school";
 
 type DropdownItem = { to: string; label: string };
-type NavLink = { to: string; label: string; dropdown?: "about" | "mpd" };
+type DropdownKey = "about" | "mpd" | "gallery";
+type NavLink = { to: string; label: string; dropdown?: DropdownKey };
 const links: NavLink[] = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About", dropdown: "about" },
-  { to: "/#campus", label: "Campus" },
+  { to: "/gallery", label: "Gallery", dropdown: "gallery" },
   { to: "/mpd", label: "MPD", dropdown: "mpd" },
   { to: "/enquiry", label: "Enquiry" },
   { to: "/contact", label: "Contact" },
@@ -20,6 +21,12 @@ const aboutItems: DropdownItem[] = [
   { to: "/about#manager-message", label: "Manager Message" },
   { to: "/about#our-picture", label: "Our Picture" },
   { to: "/about#facilities-faculty", label: "Facilities & Faculty" },
+];
+
+const galleryItems: DropdownItem[] = [
+  { to: "/gallery#pictures", label: "Pictures" },
+  { to: "/gallery#videos", label: "Videos" },
+  { to: "/gallery#campus", label: "Campus" },
 ];
 
 const mpdItems: DropdownItem[] = [
@@ -36,7 +43,7 @@ const mpdItems: DropdownItem[] = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
-  const [openDropdown, setOpenDropdown] = useState<"about" | "mpd" | null>(null);
+  const [openDropdown, setOpenDropdown] = useState<DropdownKey | null>(null);
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -58,7 +65,7 @@ export function Navbar() {
 
         <ul className="hidden lg:flex items-center gap-1 flex-1 justify-center whitespace-nowrap">
           {links.map((l) => {
-            const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : null;
+            const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : l.dropdown === "gallery" ? galleryItems : null;
             const isOpen = openDropdown === l.dropdown;
             return (
               <li
@@ -120,7 +127,7 @@ export function Navbar() {
         <div className="lg:hidden border-t bg-white">
           <ul className="px-4 py-2 space-y-1">
             {links.map((l) => {
-              const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : null;
+              const items = l.dropdown === "about" ? aboutItems : l.dropdown === "mpd" ? mpdItems : l.dropdown === "gallery" ? galleryItems : null;
               return (
                 <li key={l.label}>
                   {items ? (
