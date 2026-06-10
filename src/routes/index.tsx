@@ -4,6 +4,8 @@ import { SCHOOL } from "@/lib/school";
 import hero from "@/assets/hero-campus.jpg";
 import aboutImg from "@/assets/about-students.jpg";
 import principalImg from "@/assets/principal.jpg";
+import founderAsset from "@/assets/founder-chhoteylal.png.asset.json";
+import patronAsset from "@/assets/patron-ramkali.png.asset.json";
 import { useEffect, useRef, useState } from "react";
 import {
   GraduationCap, BookOpen, Trophy, Users, Beaker, Monitor, Library, Bus,
@@ -505,6 +507,102 @@ function Home() {
 
       {/* SCHOOL MOBILE APP */}
       <MobileAppSection />
+
+      {/* FOUNDERS & INSPIRATION */}
+      <section className="relative bg-soft py-20 md:py-28 overflow-hidden">
+        <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-aqua-soft blur-3xl opacity-70" />
+        <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-aqua-soft blur-3xl opacity-70" />
+        <div className="relative mx-auto max-w-7xl px-4">
+          <div className="text-center max-w-2xl mx-auto">
+            <p className="text-teal font-semibold uppercase text-xs tracking-[0.18em]">Founders & Inspiration</p>
+            <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold text-navy">
+              Honouring the visionaries behind our journey
+            </h2>
+            <p className="mt-4 text-slate-600">
+              The vision, values, and dedication of the individuals whose legacy continues to guide Seth Chhoteylal Academy.
+            </p>
+          </div>
+
+          <div className="mt-14 grid gap-10 lg:grid-cols-2 items-start">
+            {/* Portraits */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {[
+                { img: founderAsset.url, name: "Late Shri Seth Chhoteylal Gupta", role: "Founder Inspiration", grad: "bg-gradient-teal-slate" },
+                { img: patronAsset.url, name: "Smt. Ramkali Devi Gupta", role: "Patron & Benefactor", grad: "bg-gradient-teal" },
+              ].map((p) => (
+                <div
+                  key={p.name}
+                  className="group bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-md hover-lift transition"
+                >
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <img
+                      src={p.img}
+                      alt={p.name}
+                      loading="lazy"
+                      className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition duration-700"
+                    />
+                    <div className={`absolute inset-x-0 bottom-0 h-1.5 ${p.grad}`} />
+                  </div>
+                  <div className="p-5 text-center">
+                    <div className="font-display font-bold text-navy leading-tight">{p.name}</div>
+                    <div className="mt-1 text-xs uppercase tracking-wider text-teal font-semibold">{p.role}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Content card */}
+            <div className="relative bg-white rounded-3xl border border-slate-200 shadow-lg p-8 md:p-10 border-l-4 border-l-teal hover-lift transition">
+              <span className="inline-flex items-center gap-2 text-teal text-[11px] font-bold uppercase tracking-[0.2em] bg-aqua-soft px-3 py-1 rounded-full">
+                Our Heritage
+              </span>
+              <h3 className="mt-4 font-display text-2xl md:text-3xl font-bold text-navy">
+                A Legacy of Vision, Dedication & Service
+              </h3>
+              <div className="mt-5 space-y-4 text-slate-700 leading-relaxed text-[15px]">
+                <p>
+                  Seth Chhoteylal Academy, Rath, was established by <span className="font-semibold text-navy">Dr. Ram Gopal Gupta</span> and <span className="font-semibold text-navy">Mr. Hari Prakash Gupta</span> in loving memory of their father, Late Shri Seth Chhoteylal Gupta, a respected businessman known for his hard work, integrity, and commitment to society.
+                </p>
+                <p>
+                  The foundation of the institution was further strengthened by <span className="font-semibold text-navy">Smt. Ramkali Devi Gupta</span>, wife of Shri Chhoteylal Gupta, who generously donated the land for the school building and supported the vision of providing quality education to future generations.
+                </p>
+                <p>
+                  Today, the management, principal, teachers, and staff remain committed to carrying forward their values by nurturing knowledge, character, discipline, and excellence among students.
+                </p>
+              </div>
+
+              <div className="mt-6 relative rounded-2xl bg-gradient-teal-slate text-white p-6 overflow-hidden">
+                <Quote className="absolute -top-2 -left-2 h-16 w-16 text-white/10" />
+                <p className="relative font-display text-lg md:text-xl italic leading-relaxed">
+                  "Education is the greatest gift we can leave for future generations."
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Stats */}
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 max-w-3xl mx-auto">
+            {[
+              { icon: Award, value: "25+", label: "Years of Educational Excellence" },
+              { icon: Users, value: "Thousands", label: "of Students Empowered" },
+            ].map((s) => (
+              <div
+                key={s.label}
+                className="flex items-center gap-4 bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover-lift transition"
+              >
+                <div className="h-14 w-14 shrink-0 rounded-2xl bg-aqua-soft text-teal flex items-center justify-center">
+                  <s.icon className="h-7 w-7" />
+                </div>
+                <div>
+                  <div className="font-display text-2xl font-bold text-navy">{s.value}</div>
+                  <div className="text-sm text-slate-600">{s.label}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
 
       {/* TESTIMONIALS */}
       <section className="relative bg-gradient-teal-slate py-16 md:py-24 overflow-hidden">
