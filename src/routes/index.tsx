@@ -603,6 +603,77 @@ function Home() {
         </div>
       </section>
 
+      {/* SCA STARS - Student Achievements */}
+      <section className="relative bg-soft py-20 md:py-28 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,rgba(15,118,110,0.06),transparent_55%),radial-gradient(circle_at_85%_90%,rgba(30,41,59,0.06),transparent_55%)]" />
+        <div className="relative mx-auto max-w-7xl px-4">
+          <div className="text-center max-w-2xl mx-auto animate-fade-up">
+            <p className="text-teal font-semibold uppercase text-xs tracking-[0.18em]">Pride of SCA</p>
+            <h2 className="mt-3 font-display text-3xl md:text-5xl font-bold text-navy">
+              Meet Our SCA Stars <span className="inline-block">✨</span>
+            </h2>
+            <p className="mt-4 text-slate-600 text-base md:text-lg">
+              Celebrating academic excellence, achievements, and the inspiring journeys of our brightest students and alumni.
+            </p>
+            <div className="mt-5 mx-auto h-1 w-20 rounded-full bg-gradient-teal" />
+          </div>
+
+          <div className="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-7">
+            {[
+              {
+                title: "Class X Toppers",
+                subtitle: "Session 2025-26",
+                img: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80",
+              },
+              {
+                title: "Class XII Toppers",
+                subtitle: "Session 2025-26",
+                img: "https://images.unsplash.com/photo-1627556704302-624286467c65?auto=format&fit=crop&w=800&q=80",
+              },
+              {
+                title: "IIT Advanced 2026",
+                subtitle: "Rank: 20,864",
+                img: "https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=800&q=80",
+              },
+              {
+                title: "Alumni Student",
+                subtitle: "Civil Service",
+                img: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+              },
+            ].map((star, i) => (
+              <article
+                key={star.title}
+                className="group relative bg-white rounded-2xl overflow-hidden border border-slate-200/70 shadow-sm hover-lift animate-fade-up focus-within:ring-2 focus-within:ring-teal/40"
+                style={{ animationDelay: `${i * 120}ms` }}
+                tabIndex={0}
+              >
+                <div className="relative aspect-[4/5] overflow-hidden bg-slate-100">
+                  <img
+                    src={star.img}
+                    alt={`${star.title} — ${star.subtitle}`}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/10 to-transparent" />
+                  <div className="absolute top-3 left-3">
+                    <span className="inline-flex items-center gap-1 rounded-full bg-white/95 backdrop-blur px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-teal shadow-sm">
+                      ★ SCA Star
+                    </span>
+                  </div>
+                  <div className="absolute bottom-0 left-0 right-0 p-4 md:p-5">
+                    <h3 className="font-display text-base md:text-xl font-bold text-white leading-tight">
+                      {star.title}
+                    </h3>
+                    <p className="mt-1 text-aqua text-xs md:text-sm font-medium">
+                      {star.subtitle}
+                    </p>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
 
       {/* TESTIMONIALS */}
       <section className="relative bg-gradient-teal-slate py-16 md:py-24 overflow-hidden">
