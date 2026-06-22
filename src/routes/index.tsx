@@ -443,15 +443,32 @@ function Home() {
             <p className="text-teal font-semibold uppercase text-xs tracking-[0.18em]">Campus & Facilities</p>
             <h2 className="mt-3 font-display text-3xl md:text-4xl font-bold text-navy">A learning environment built for curiosity.</h2>
           </div>
-          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {facilities.map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="group bg-white rounded-2xl p-6 border border-slate-200 hover:border-teal hover-lift overflow-hidden">
-                <div className="inline-flex items-center justify-center h-12 w-12 rounded-xl bg-aqua-soft text-teal group-hover:bg-teal group-hover:text-white transition">
-                  <Icon className="h-6 w-6" />
+          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {facilities.map(({ icon: Icon, title, desc, img }) => (
+              <article
+                key={title}
+                className="group flex flex-col bg-white rounded-[24px] border border-slate-200/80 shadow-sm hover:shadow-2xl hover:border-teal/40 hover:-translate-y-1.5 transition-all duration-500 overflow-hidden h-full"
+              >
+                <div className="relative h-[220px] overflow-hidden rounded-t-[24px]">
+                  <img
+                    src={img}
+                    alt={title}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                  />
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-navy/80 via-navy/20 to-transparent" />
+                  <div className="absolute top-4 left-4 inline-flex items-center justify-center h-11 w-11 rounded-xl bg-white/95 text-teal shadow-md backdrop-blur-sm group-hover:bg-teal group-hover:text-white transition-colors duration-300">
+                    <Icon className="h-5 w-5" />
+                  </div>
                 </div>
-                <h3 className="mt-4 font-display font-semibold text-navy text-lg">{title}</h3>
-                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{desc}</p>
-              </div>
+                <div className="flex flex-col flex-1 p-7">
+                  <h3 className="font-display font-semibold text-navy text-xl">{title}</h3>
+                  <p className="mt-3 text-sm text-slate-600 leading-relaxed">{desc}</p>
+                  <span className="mt-5 inline-flex items-center gap-1 text-teal text-sm font-semibold opacity-0 group-hover:opacity-100 translate-y-1 group-hover:translate-y-0 transition-all duration-300">
+                    Learn more <span aria-hidden>→</span>
+                  </span>
+                </div>
+              </article>
             ))}
           </div>
         </div>
