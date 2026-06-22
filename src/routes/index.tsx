@@ -145,15 +145,15 @@ const stats = [
 ];
 
 const facilities = [
-  { icon: Trophy, title: "Sports Facilities", desc: "Cricket, football, athletics and indoor games on a spacious campus." },
-  { icon: Library, title: "Library", desc: "Thousands of books, periodicals and quiet reading zones." },
-  { icon: Sparkles, title: "Robotics Lab", desc: "Hands-on STEM kits, robotics and coding for young innovators." },
-  { icon: Beaker, title: "Science Lab", desc: "Modern Physics, Chemistry & Biology labs for experiment-led learning." },
-  { icon: Monitor, title: "Computer Lab", desc: "High-speed internet, modern PCs and ICT curriculum across grades." },
-  { icon: Bus, title: "Transport", desc: "Safe, GPS-tracked school buses covering nearby villages and towns." },
-  { icon: ShieldCheck, title: "Safety & Surveillance", desc: "CCTV-monitored campus, trained staff and secure entry points." },
-  { icon: Monitor, title: "Smart Classes", desc: "Interactive digital classrooms with audio-visual learning aids." },
-  { icon: Building2, title: "Modern Infrastructure", desc: "Airy classrooms, clean washrooms and a green, child-friendly campus." },
+  { icon: Trophy, title: "Sports Facilities", desc: "Cricket, football, athletics and indoor games on a spacious campus.", img: "https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=1200&q=80" },
+  { icon: Library, title: "Library", desc: "Thousands of books, periodicals and quiet reading zones.", img: "https://images.unsplash.com/photo-1521587760476-6c12a4b040da?w=1200&q=80" },
+  { icon: Sparkles, title: "Robotics Lab", desc: "Hands-on STEM kits, robotics and coding for young innovators.", img: "https://images.unsplash.com/photo-1581090700227-1e8e0b1a1a3a?w=1200&q=80" },
+  { icon: Beaker, title: "Science Lab", desc: "Modern Physics, Chemistry & Biology labs for experiment-led learning.", img: "https://images.unsplash.com/photo-1532634922-8fe0b757fb13?w=1200&q=80" },
+  { icon: Monitor, title: "Computer Lab", desc: "High-speed internet, modern PCs and ICT curriculum across grades.", img: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=1200&q=80" },
+  { icon: Bus, title: "Transport", desc: "Safe, GPS-tracked school buses covering nearby villages and towns.", img: "https://images.unsplash.com/photo-1597149961419-cf515b9a0a87?w=1200&q=80" },
+  { icon: ShieldCheck, title: "Safe Campus", desc: "CCTV-monitored campus, trained staff and secure entry points.", img: "https://images.unsplash.com/photo-1573164713988-8665fc963095?w=1200&q=80" },
+  { icon: Monitor, title: "Smart Classrooms", desc: "Interactive digital classrooms with audio-visual learning aids.", img: "https://images.unsplash.com/photo-1580582932707-520aed937b7b?w=1200&q=80" },
+  { icon: Building2, title: "Hostel & Infrastructure", desc: "Clean, modern hostel rooms with airy classrooms and green surroundings.", img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=1200&q=80" },
 ];
 
 const gallery = [
